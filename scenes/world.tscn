@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://hwlhv0o3aiui"]
+
+[ext_resource type="PackedScene" uid="uid://cn42syd67mpb5" path="res://scenes/player.tscn" id="1_liojp"]
+[ext_resource type="Texture2D" uid="uid://c4h1ayce0usk7" path="res://icon.svg" id="2_xudh1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2p6b"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_liojp")]
+position = Vector2(0, 2)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -2)
+zoom = Vector2(1.1, 1.1)
+position_smoothing_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_h2p6b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.117647, 1, 1)
+position = Vector2(-1, -80)
+scale = Vector2(1, 0.203125)
+texture = ExtResource("2_xudh1")
