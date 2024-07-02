@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://hwlhv0o3aiui"]
+[gd_scene load_steps=16 format=3 uid="uid://hwlhv0o3aiui"]
 
 [ext_resource type="PackedScene" uid="uid://cn42syd67mpb5" path="res://scenes/player.tscn" id="1_liojp"]
 [ext_resource type="Texture2D" uid="uid://de23065tk11m5" path="res://assets/images/background.png" id="3_1it2m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c56vevvhexbd7" path="res://assets/images/monument1.png" id="7_260sc"]
 [ext_resource type="Texture2D" uid="uid://cbl1ivfi8iaho" path="res://assets/images/tree.png" id="8_mi4da"]
 [ext_resource type="Texture2D" uid="uid://yn6wpabaxm6d" path="res://assets/images/leaf.png" id="9_767ef"]
+[ext_resource type="Texture2D" uid="uid://day4ep8lt4rpv" path="res://assets/images/wall.png" id="10_vaq7f"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2p6b"]
 
@@ -50,6 +51,7 @@ position = Vector2(575, 370)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -2)
+limit_bottom = 740
 position_smoothing_enabled = true
 drag_vertical_offset = -1.0
 
@@ -57,6 +59,7 @@ drag_vertical_offset = -1.0
 position = Vector2(575, 478)
 
 [node name="HorizontalCollision" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 64)
 shape = SubResource("WorldBoundaryShape2D_h2p6b")
 
 [node name="LeftCollision" type="CollisionShape2D" parent="StaticBody2D"]
@@ -89,56 +92,57 @@ motion_scale = Vector2(1.2, 1)
 motion_mirroring = Vector2(3500, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(25, 637)
+position = Vector2(25, 653)
+scale = Vector2(0.642857, 0.851852)
 texture = ExtResource("3_ny0sm")
 centered = false
 
 [node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(0.507733, 0.00195392, 0.740559, 1)
 self_modulate = Color(0.997945, 0.911876, 0.933148, 1)
-position = Vector2(2140, 755)
+position = Vector2(1993, 725)
 rotation = -0.0802851
-scale = Vector2(0.675, 0.675)
+scale = Vector2(0.417417, 0.46323)
 texture = ExtResource("4_3p2wu")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(0.507733, 0.00195392, 0.740559, 1)
 self_modulate = Color(0.997945, 0.911876, 0.933148, 1)
-position = Vector2(1549.22, 737.219)
+position = Vector2(1461.03, 690.587)
 rotation = -0.488692
-scale = Vector2(0.465, 0.465)
+scale = Vector2(0.269075, 0.333108)
 texture = ExtResource("4_3p2wu")
 
 [node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(0.507733, 0.00195392, 0.740559, 1)
 self_modulate = Color(0.997945, 0.911876, 0.933148, 1)
-position = Vector2(1607.22, 740.219)
+position = Vector2(1559.63, 689.696)
 rotation = 0.305433
-scale = Vector2(0.465, 0.465)
+scale = Vector2(0.288938, 0.310029)
 texture = ExtResource("4_3p2wu")
 
 [node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(0.507733, 0.00195392, 0.740559, 1)
 self_modulate = Color(0.997945, 0.911876, 0.933148, 1)
-position = Vector2(2677.37, 765.368)
+position = Vector2(2588, 710)
 rotation = -0.102974
-scale = Vector2(0.61, 0.61)
+scale = Vector2(0.316249, 0.316249)
 texture = ExtResource("4_3p2wu")
 
 [node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(0.507733, 0.00195392, 0.740559, 1)
 self_modulate = Color(0.997945, 0.911876, 0.933148, 1)
-position = Vector2(2964, 757)
+position = Vector2(2701, 700)
 rotation = -0.102974
-scale = Vector2(0.61, 0.61)
+scale = Vector2(0.315794, 0.302254)
 texture = ExtResource("4_3p2wu")
 
 [node name="Sprite2D7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color(0.507733, 0.00195392, 0.740559, 1)
 self_modulate = Color(0.997945, 0.911876, 0.933148, 1)
-position = Vector2(2821, 764)
+position = Vector2(2646, 698)
 rotation = -0.102974
-scale = Vector2(0.61, 0.61)
+scale = Vector2(0.434199, 0.40093)
 texture = ExtResource("4_3p2wu")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -293,3 +297,41 @@ texture = ExtResource("9_767ef")
 lifetime = 15.0
 preprocess = 10.0
 visibility_rect = Rect2(-2500, -100, 5000, 200)
+
+[node name="Right Wall" type="Node" parent="."]
+
+[node name="Wall3" type="Sprite2D" parent="Right Wall"]
+z_index = -1
+position = Vector2(4545.28, 316.211)
+scale = Vector2(0.844298, 0.844298)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall2" type="Sprite2D" parent="Right Wall"]
+z_index = -1
+position = Vector2(4767.28, 275.211)
+scale = Vector2(1.41667, 1.41667)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall5" type="Sprite2D" parent="Right Wall"]
+z_index = -1
+position = Vector2(4408.84, 342.839)
+scale = Vector2(0.461075, 0.417215)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall4" type="Sprite2D" parent="Right Wall"]
+z_index = -1
+position = Vector2(4327.28, 347.211)
+scale = Vector2(0.28317, 0.256233)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall6" type="Sprite2D" parent="Right Wall"]
+z_index = -1
+position = Vector2(4274, 344)
+scale = Vector2(0.207372, 0.187645)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall"]
+z_index = -1
+position = Vector2(5097.28, 271.211)
+scale = Vector2(2.03509, 2.03509)
+texture = ExtResource("10_vaq7f")
