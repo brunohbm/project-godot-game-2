@@ -6,6 +6,7 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public AnimatedSprite2D animatedSprite2D;
 	public const float Speed = 300.0f;
+	public const float RollSpeed = 500.0f;
 	public const float JumpVelocity = -400.0f;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -27,11 +28,30 @@ public partial class Player : CharacterBody2D
 
 	private void _ChangeSpriteAnimation(float direction)
 	{
+		if (Input.IsActionPressed("attack"))
+		{
+			animatedSprite2D.Play("attack");
+			return;
+		}
+
+		if (Input.IsActionPressed("defense"))
+		{
+			animatedSprite2D.Play("defense");
+			return;
+		}
+
 		if (IsOnFloor())
 		{
 			if (direction == 0)
 			{
 				animatedSprite2D.Play("idle");
+				return;
+			}
+
+
+			if (Input.IsActionPressed("roll"))
+			{
+				animatedSprite2D.Play("roll");
 				return;
 			}
 
@@ -42,35 +62,41 @@ public partial class Player : CharacterBody2D
 		animatedSprite2D.Play("jump");
 	}
 
-	public override void _PhysicsProcess(double delta)
+	private Vector2 _GetPlayerVelocity(float direction, double delta)
 	{
 		Vector2 velocity = Velocity;
+		bool isOnFloor = IsOnFloor();
+		bool movingRight = direction != 0;
+		float movementSpeed = Speed;
 
-		// Add the gravity.
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
+		if (!isOnFloor) velocity.Y += gravity * (float)delta;
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		if (Input.IsActionPressed("defense") || Input.IsActionPressed("attack"))
+		{
+			if (isOnFloor) velocity.X = 0;
+			return velocity;
+		}
+
+		if (Input.IsActionJustPressed("jump") && isOnFloor)
+		{
 			velocity.Y = JumpVelocity;
+		}
+		else if (Input.IsActionPressed("roll") && isOnFloor)
+		{
+			movementSpeed = RollSpeed;
+		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
+		velocity.X = movingRight ? (direction * movementSpeed) : Mathf.MoveToward(Velocity.X, 0, movementSpeed);
+
+		return velocity;
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
 		float direction = Input.GetAxis("move_left", "move_right");
 		this._ChangeSpriteDirection(direction);
 		this._ChangeSpriteAnimation(direction);
-
-		if (direction != 0)
-		{
-			velocity.X = direction * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
-
-
-		Velocity = velocity;
+		Velocity = this._GetPlayerVelocity(direction, delta);
 		MoveAndSlide();
 	}
 }

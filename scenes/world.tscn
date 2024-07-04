@@ -47,7 +47,7 @@ turbulence_noise_scale = 1.0
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_liojp")]
-position = Vector2(575, 370)
+position = Vector2(575, 528)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -2)
@@ -334,4 +334,42 @@ texture = ExtResource("10_vaq7f")
 z_index = -1
 position = Vector2(5097.28, 271.211)
 scale = Vector2(2.03509, 2.03509)
+texture = ExtResource("10_vaq7f")
+
+[node name="Right Wall2" type="Node" parent="."]
+
+[node name="Wall3" type="Sprite2D" parent="Right Wall2"]
+z_index = -1
+position = Vector2(-564, 287)
+scale = Vector2(-0.840901, 0.844)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall2" type="Sprite2D" parent="Right Wall2"]
+z_index = -1
+position = Vector2(-790, 280)
+scale = Vector2(-1.417, 1.417)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall5" type="Sprite2D" parent="Right Wall2"]
+z_index = -1
+position = Vector2(-424, 312)
+scale = Vector2(-0.461, 0.417)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall4" type="Sprite2D" parent="Right Wall2"]
+z_index = -1
+position = Vector2(-345, 304)
+scale = Vector2(-0.283, 0.267512)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall6" type="Sprite2D" parent="Right Wall2"]
+z_index = -1
+position = Vector2(-291, 297)
+scale = Vector2(-0.207, 0.188)
+texture = ExtResource("10_vaq7f")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall2"]
+z_index = -1
+position = Vector2(-1146.01, 254.19)
+scale = Vector2(-2.035, 2.035)
 texture = ExtResource("10_vaq7f")
