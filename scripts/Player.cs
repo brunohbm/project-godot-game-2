@@ -8,6 +8,7 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 300.0f;
 	public const float RollSpeed = 500.0f;
 	public const float JumpVelocity = -400.0f;
+	public bool isDefending = false;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -31,14 +32,18 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("attack"))
 		{
 			animatedSprite2D.Play("attack");
+			isDefending = false;
 			return;
 		}
 
 		if (Input.IsActionPressed("defense"))
 		{
 			animatedSprite2D.Play("defense");
+			isDefending = true;
 			return;
 		}
+
+		isDefending = false;
 
 		if (IsOnFloor())
 		{
@@ -98,5 +103,6 @@ public partial class Player : CharacterBody2D
 		this._ChangeSpriteAnimation(direction);
 		Velocity = this._GetPlayerVelocity(direction, delta);
 		MoveAndSlide();
+		GD.Print(isDefending);
 	}
 }

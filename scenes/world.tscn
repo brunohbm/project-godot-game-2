@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://hwlhv0o3aiui"]
+[gd_scene load_steps=22 format=3 uid="uid://hwlhv0o3aiui"]
 
 [ext_resource type="PackedScene" uid="uid://cn42syd67mpb5" path="res://scenes/player.tscn" id="1_liojp"]
 [ext_resource type="Texture2D" uid="uid://de23065tk11m5" path="res://assets/images/background.png" id="3_1it2m"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cbl1ivfi8iaho" path="res://assets/images/tree.png" id="8_mi4da"]
 [ext_resource type="Texture2D" uid="uid://yn6wpabaxm6d" path="res://assets/images/leaf.png" id="9_767ef"]
 [ext_resource type="Texture2D" uid="uid://day4ep8lt4rpv" path="res://assets/images/wall.png" id="10_vaq7f"]
+[ext_resource type="Texture2D" uid="uid://ds2trs2fxydba" path="res://assets/images/whitch.png" id="11_wryan"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2p6b"]
 
@@ -43,6 +44,49 @@ scale_min = 0.01
 scale_max = 0.04
 turbulence_noise_strength = 0.0
 turbulence_noise_scale = 1.0
+
+[sub_resource type="Animation" id="Animation_fmbqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.109907, 0.109907)]
+}
+
+[sub_resource type="Animation" id="Animation_lkx1u"]
+resource_name = "whitch"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.393391, 0.393391)]
+}
+
+[sub_resource type="Animation" id="Animation_0s8ql"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_od2fq"]
+_data = {
+"RESET": SubResource("Animation_fmbqw"),
+"whitch_appearance": SubResource("Animation_lkx1u"),
+"whitch_constant_moviment": SubResource("Animation_0s8ql")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5ep8"]
+size = Vector2(49, 698)
 
 [node name="World" type="Node2D"]
 
@@ -373,3 +417,21 @@ z_index = -1
 position = Vector2(-1146.01, 254.19)
 scale = Vector2(-2.035, 2.035)
 texture = ExtResource("10_vaq7f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Whitch")
+libraries = {
+"": SubResource("AnimationLibrary_od2fq")
+}
+autoplay = "whitch_appearance"
+
+[node name="Whitch" type="Sprite2D" parent="."]
+position = Vector2(2000, 289.65)
+scale = Vector2(0.109907, 0.109907)
+texture = ExtResource("11_wryan")
+
+[node name="AnimationCollider" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationCollider"]
+position = Vector2(1785, 366)
+shape = SubResource("RectangleShape2D_l5ep8")
