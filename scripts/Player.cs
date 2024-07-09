@@ -9,13 +9,14 @@ public partial class Player : CharacterBody2D
 	public const float RollSpeed = 500.0f;
 	public const float JumpVelocity = -400.0f;
 	public bool isDefending = false;
+	public bool isOnCutscene = false;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	private void _ChangeSpriteDirection(float direction)
 	{
-		if (direction > 0)
+		if (direction > 0 || this.isOnCutscene)
 		{
 			animatedSprite2D.FlipH = false;
 			return;
@@ -29,6 +30,12 @@ public partial class Player : CharacterBody2D
 
 	private void _ChangeSpriteAnimation(float direction)
 	{
+		if (this.isOnCutscene)
+		{
+			if (IsOnFloor()) animatedSprite2D.Play("idle");
+			return;
+		}
+
 		if (Input.IsActionPressed("attack"))
 		{
 			animatedSprite2D.Play("attack");
@@ -71,10 +78,16 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 		bool isOnFloor = IsOnFloor();
-		bool movingRight = direction != 0;
+		bool isMoving = direction != 0;
 		float movementSpeed = Speed;
 
 		if (!isOnFloor) velocity.Y += gravity * (float)delta;
+
+		if (isOnCutscene)
+		{
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, movementSpeed);
+			return velocity;
+		}
 
 		if (Input.IsActionPressed("defense") || Input.IsActionPressed("attack"))
 		{
@@ -91,7 +104,7 @@ public partial class Player : CharacterBody2D
 			movementSpeed = RollSpeed;
 		}
 
-		velocity.X = movingRight ? (direction * movementSpeed) : Mathf.MoveToward(Velocity.X, 0, movementSpeed);
+		velocity.X = isMoving ? (direction * movementSpeed) : Mathf.MoveToward(Velocity.X, 0, movementSpeed);
 
 		return velocity;
 	}
@@ -103,6 +116,10 @@ public partial class Player : CharacterBody2D
 		this._ChangeSpriteAnimation(direction);
 		Velocity = this._GetPlayerVelocity(direction, delta);
 		MoveAndSlide();
-		GD.Print(isDefending);
+	}
+
+	public void startCutsceneMode()
+	{
+		this.isOnCutscene = true;
 	}
 }

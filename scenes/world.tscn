@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://hwlhv0o3aiui"]
+[gd_scene load_steps=24 format=3 uid="uid://hwlhv0o3aiui"]
 
 [ext_resource type="PackedScene" uid="uid://cn42syd67mpb5" path="res://scenes/player.tscn" id="1_liojp"]
 [ext_resource type="Texture2D" uid="uid://de23065tk11m5" path="res://assets/images/background.png" id="3_1it2m"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://yn6wpabaxm6d" path="res://assets/images/leaf.png" id="9_767ef"]
 [ext_resource type="Texture2D" uid="uid://day4ep8lt4rpv" path="res://assets/images/wall.png" id="10_vaq7f"]
 [ext_resource type="Texture2D" uid="uid://ds2trs2fxydba" path="res://assets/images/whitch.png" id="11_wryan"]
+[ext_resource type="Script" path="res://scripts/WitchAnimation.cs" id="12_y31pu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2p6b"]
 
@@ -19,6 +20,172 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xpfoc"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64ysd"]
+size = Vector2(19.5, 740)
+
+[sub_resource type="Animation" id="Animation_fmbqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2000, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(289.65, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Spawn Effect:process_material:radial_velocity_max")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Spawn Effect:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lkx1u"]
+resource_name = "whitch"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.393391, 0.393391)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(2000, -0.25, 0, 0.25, 0, 1985, -0.25, 0, 0.25, 0, 2007, -0.25, 0, 0.25, 0, 2006, -0.25, 0, 0.25, 0, 2000, -0.25, 0, 0.25, 0, 1985, -0.25, 0, 0.25, 0, 2007, -0.25, 0, 0.25, 0, 2006, -0.25, 0, 0.25, 0, 1985, -0.25, 0, 0.25, 0, 2007, -0.25, 0, 0.25, 0, 2006, -0.25, 0, 0.25, 0, 2000, -0.25, 0, 0.25, 0, 1985, -0.25, 0, 0.25, 0, 2007, -0.25, 0, 0.25, 0, 2006, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(289.65, -0.25, 0, 0.25, 0, 284, -0.25, 0, 0.25, 0, 281, -0.25, 0, 0.25, 0, 298, -0.25, 0, 0.25, 0, 289.65, -0.25, 0, 0.25, 0, 284, -0.25, 0, 0.25, 0, 281, -0.25, 0, 0.25, 0, 298, -0.25, 0, 0.25, 0, 284, -0.25, 0, 0.25, 0, 281, -0.25, 0, 0.25, 0, 298, -0.25, 0, 0.25, 0, 289.65, -0.25, 0, 0.25, 0, 284, -0.25, 0, 0.25, 0, 281, -0.25, 0, 0.25, 0, 298, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Spawn Effect:process_material:radial_velocity_max")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1, 2.8, 4.1, 19.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 65.93, 0.0, 248.28, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Spawn Effect:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 19.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_od2fq"]
+_data = {
+"RESET": SubResource("Animation_fmbqw"),
+"witch_appearance": SubResource("Animation_lkx1u")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a5gb5"]
+particle_flag_disable_z = true
+orbit_velocity_max = 2.905
+scale_min = 0.0
+scale_max = 3.0
+color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0st0h"]
+blend_mode = 4
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_78cpc"]
 
@@ -45,52 +212,9 @@ scale_max = 0.04
 turbulence_noise_strength = 0.0
 turbulence_noise_scale = 1.0
 
-[sub_resource type="Animation" id="Animation_fmbqw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.109907, 0.109907)]
-}
-
-[sub_resource type="Animation" id="Animation_lkx1u"]
-resource_name = "whitch"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(0.393391, 0.393391)]
-}
-
-[sub_resource type="Animation" id="Animation_0s8ql"]
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_od2fq"]
-_data = {
-"RESET": SubResource("Animation_fmbqw"),
-"whitch_appearance": SubResource("Animation_lkx1u"),
-"whitch_constant_moviment": SubResource("Animation_0s8ql")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5ep8"]
-size = Vector2(49, 698)
-
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_liojp")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_liojp")]
 position = Vector2(575, 528)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -333,15 +457,6 @@ position = Vector2(2544, 271)
 scale = Vector2(0.61, 0.61)
 texture = ExtResource("8_mi4da")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(2224, 105)
-amount = 60
-process_material = SubResource("ParticleProcessMaterial_tgtoe")
-texture = ExtResource("9_767ef")
-lifetime = 15.0
-preprocess = 10.0
-visibility_rect = Rect2(-2500, -100, 5000, 200)
-
 [node name="Right Wall" type="Node" parent="."]
 
 [node name="Wall3" type="Sprite2D" parent="Right Wall"]
@@ -418,20 +533,41 @@ position = Vector2(-1146.01, 254.19)
 scale = Vector2(-2.035, 2.035)
 texture = ExtResource("10_vaq7f")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Whitch")
+[node name="Animation" type="Node" parent="."]
+
+[node name="WitchAnimation" type="Area2D" parent="Animation" node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("12_y31pu")
+animationPlayer = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/WitchAnimation"]
+position = Vector2(1710, 376)
+shape = SubResource("RectangleShape2D_64ysd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
+root_node = NodePath("../Witch")
 libraries = {
 "": SubResource("AnimationLibrary_od2fq")
 }
-autoplay = "whitch_appearance"
 
-[node name="Whitch" type="Sprite2D" parent="."]
+[node name="Spawn Effect" type="GPUParticles2D" parent="Animation"]
+position = Vector2(2000, 293)
+scale = Vector2(0.255708, 0.255708)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_a5gb5")
+
+[node name="Witch" type="Sprite2D" parent="Animation"]
+material = SubResource("CanvasItemMaterial_0st0h")
 position = Vector2(2000, 289.65)
-scale = Vector2(0.109907, 0.109907)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("11_wryan")
 
-[node name="AnimationCollider" type="StaticBody2D" parent="."]
+[node name="LeavesGPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(2224, 105)
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_tgtoe")
+texture = ExtResource("9_767ef")
+lifetime = 15.0
+preprocess = 10.0
+visibility_rect = Rect2(-2500, -100, 5000, 200)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationCollider"]
-position = Vector2(1785, 366)
-shape = SubResource("RectangleShape2D_l5ep8")
+[connection signal="body_entered" from="Animation/WitchAnimation" to="Animation/WitchAnimation" method="_onBodyEntered"]
